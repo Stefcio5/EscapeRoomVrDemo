@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: 7cbe66988675ad04a8b66d8783f5c2d8
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: -8639993316982285888
+    second: Armature.001|ArmatureAction.001
+  - first:
+      74: 8766432382757447856
+    second: Armature.001|Cube.010Action
+  - first:
+      74: 4657937632287099814
+    second: Armature.001|Cube.010Action.001
+  - first:
+      74: -551502980307599182
+    second: Armature.001|Cube.010Action.002
+  - first:
+      74: -7199552382851900754
+    second: Armature.001|Cube.010Action.003
+  - first:
+      74: 8184097229833174259
+    second: Armature.001|Cube.010Action.004
+  - first:
+      74: 1253560705484870678
+    second: Armature.001|CylinderAction.001
+  - first:
+      74: -8006029834954203895
+    second: Cylinder.064|Cube.010Action
+  - first:
+      74: -3587954468318514799
+    second: Cylinder.064|Cube.010Action.001
+  - first:
+      74: -5545685431621999919
+    second: Cylinder.064|Cube.010Action.002
+  - first:
+      74: 404808870464466214
+    second: Cylinder.064|Cube.010Action.003
+  - first:
+      74: 2562045605396962301
+    second: Cylinder.064|Cube.010Action.004
+  - first:
+      74: -3915601740964013561
+    second: Cylinder.064|CylinderAction.001
+  - first:
+      74: -5396032277850869322
+    second: Cube.044|Cube.010Action
+  - first:
+      74: 8390979777795021947
+    second: Cube.044|Cube.010Action.001
+  - first:
+      74: 8702119513581816482
+    second: Cube.044|Cube.010Action.002
+  - first:
+      74: -3812925425704883867
+    second: Cube.044|Cube.010Action.003
+  - first:
+      74: 6864232618131168565
+    second: Cube.044|Cube.010Action.004
+  - first:
+      74: 1165239901020330292
+    second: Cube.044|CylinderAction.001
+  - first:
+      74: -2559859872577351552
+    second: nowy eliksir|Cube.010Action
+  - first:
+      74: -8513274357610407284
+    second: nowy eliksir|Cube.010Action.001
+  - first:
+      74: -5653325583439943088
+    second: nowy eliksir|Cube.010Action.002
+  - first:
+      74: 5585666183472981445
+    second: nowy eliksir|Cube.010Action.003
+  - first:
+      74: -3382065847112176133
+    second: nowy eliksir|Cube.010Action.004
+  - first:
+      74: 8294009468577685731
+    second: nowy eliksir|CylinderAction.001
+  - first:
+      74: -8177943574569801219
+    second: nowy eliksir.001|Cube.010Action
+  - first:
+      74: 6739274633830928420
+    second: nowy eliksir.001|Cube.010Action.001
+  - first:
+      74: -4375969970538337729
+    second: nowy eliksir.001|Cube.010Action.002
+  - first:
+      74: -2167497885057174197
+    second: nowy eliksir.001|Cube.010Action.003
+  - first:
+      74: -6455402306193629514
+    second: nowy eliksir.001|Cube.010Action.004
+  - first:
+      74: 345415488232557870
+    second: nowy eliksir.001|CylinderAction.001
+  - first:
+      74: -7437215028893230453
+    second: nowy eliksir.002|Cube.010Action
+  - first:
+      74: -8419028626565890659
+    second: nowy eliksir.002|Cube.010Action.001
+  - first:
+      74: 1719495147023055992
+    second: nowy eliksir.002|Cube.010Action.002
+  - first:
+      74: 2742375736225599844
+    second: nowy eliksir.002|Cube.010Action.003
+  - first:
+      74: -4895055265986672758
+    second: nowy eliksir.002|Cube.010Action.004
+  - first:
+      74: 3880595852330362070
+    second: nowy eliksir.002|CylinderAction.001
+  - first:
+      74: -8640728788368514914
+    second: nowy eliksir.003|Cube.010Action
+  - first:
+      74: 5818920705004926470
+    second: nowy eliksir.003|Cube.010Action.001
+  - first:
+      74: -1668476984718696837
+    second: nowy eliksir.003|Cube.010Action.002
+  - first:
+      74: 8121152672544532055
+    second: nowy eliksir.003|Cube.010Action.003
+  - first:
+      74: -7433697217491124451
+    second: nowy eliksir.003|Cube.010Action.004
+  - first:
+      74: -6676675322777691579
+    second: nowy eliksir.003|CylinderAction.001
+  - first:
+      74: -7759536552484590805
+    second: nowy eliksir.004|Cube.010Action
+  - first:
+      74: -4959066317434413759
+    second: nowy eliksir.004|Cube.010Action.001
+  - first:
+      74: -1211853675884193167
+    second: nowy eliksir.004|Cube.010Action.002
+  - first:
+      74: 1006045824689705838
+    second: nowy eliksir.004|Cube.010Action.003
+  - first:
+      74: 2779574762894344296
+    second: nowy eliksir.004|Cube.010Action.004
+  - first:
+      74: -4036044570574830279
+    second: nowy eliksir.004|CylinderAction.001
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
