@@ -11,10 +11,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Unity/Hub/Editor/2019.4.12f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Planet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SpellManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/OpenDrawerAnimation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Planet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -30,7 +29,6 @@
         <option value="$PROJECT_DIR$/../../../../Program Files/Unity/Hub/Editor/2019.4.12f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/InputModules/BaseInput.cs" />
         <option value="$PROJECT_DIR$/Assets/GestureRecognizer.cs" />
         <option value="$PROJECT_DIR$/Assets/Levitation2.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/LaserPointerWrapper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OpenDrawerAnimation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Potion.cs" />
@@ -38,9 +36,10 @@
         <option value="$PROJECT_DIR$/Assets/PotionTriggerController.cs" />
         <option value="$PROJECT_DIR$/Assets/PotionSlot.cs" />
         <option value="$PROJECT_DIR$/Assets/Planet.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Eliksir.cs" />
         <option value="$PROJECT_DIR$/Assets/GestureRecognition/Sample_OneHanded.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SpellManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Eliksir.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LaserPointerWrapper.cs" />
       </list>
     </option>
   </component>
@@ -104,6 +103,7 @@
       <workItem from="1605285191665" duration="10614000" />
       <workItem from="1605362449021" duration="7517000" />
       <workItem from="1605454038590" duration="8063000" />
+      <workItem from="1606148239164" duration="5140000" />
     </task>
     <servers />
   </component>
@@ -116,13 +116,17 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1171" y="241" key="RiderGenerateDialog" timestamp="1605286970230">
+    <state x="1171" y="241" key="RiderGenerateDialog" timestamp="1606157277184">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="1171" y="241" key="RiderGenerateDialog/0.0.2560.1040/2560.26.1680.1010@0.0.2560.1040" timestamp="1605286970230" />
+    <state x="1171" y="241" key="RiderGenerateDialog/0.0.2560.1040/2560.26.1680.1010@0.0.2560.1040" timestamp="1606157277184" />
     <state x="2677" y="132" width="1263" height="883" key="dock-window-1" timestamp="1604774169512">
       <screen x="2560" y="26" width="1680" height="1010" />
     </state>
     <state x="2677" y="132" width="1263" height="883" key="dock-window-1/0.0.2560.1040/2560.26.1680.1010@0.0.2560.1040" timestamp="1604774169512" />
+    <state x="516" y="256" width="672" height="678" key="search.everywhere.popup" timestamp="1606153273510">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="516" y="256" width="672" height="678" key="search.everywhere.popup/0.0.2560.1040/2560.26.1680.1010@0.0.2560.1040" timestamp="1606153273510" />
   </component>
 </project>

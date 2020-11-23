@@ -19,14 +19,23 @@ public class SpellManager : MonoBehaviour
     //
     [Header("MoveSpell")] 
     public bool ActivateMoveSpell = false;
+
+    public bool MoveSpellUnlocked = false;
     public bool hasMoved = false;
+
+    [Header("Lights")] 
+    public GameObject lights;
+
+    public bool lightSpellUnlocked = false;
 
     void Start()
     {
-        startingx = transform.position.x;
-        startingy = transform.position.y;
-        startingz = transform.position.z;
+        startingx = transform.localPosition.x;
+        startingy = transform.localPosition.y;
+        startingz = transform.localPosition.z;
         endingy = startingy + 2F;
+        //
+        
         
 
 
@@ -58,48 +67,60 @@ public class SpellManager : MonoBehaviour
         
     }
 
-    public void TurnLightsOff()
+    public void TurnLights()
     {
-        GameObject.Find("Lights").SetActive(false);
+        if (lights.activeSelf)
+        {
+            lights.SetActive(false);
+        }
+        else
+        {
+            lights.SetActive(true);
+        }
+        
     }
 
     public int MoveSpell()
     {
-        // has moved nie potrzebne
-        if (!hasMoved)
+        if (MoveSpellUnlocked)
         {
-            transform.position = new Vector3(Mathf.Lerp(startingx,endingx, t), startingy, startingz);
-            t += speed * Time.deltaTime;
-            if (t > 1.0f)
+            // has moved nie potrzebne
+            if (!hasMoved)
             {
-                hasMoved = true;
-                float temp = endingx;
-                endingx = startingx;
-                startingx = temp;
-                ActivateMoveSpell = false;
-                t = 0f;
-                return 0;
+                transform.localPosition = new Vector3(Mathf.Lerp(startingx,endingx, t), startingy, startingz);
+                t += speed * Time.deltaTime;
+                if (t > 1.0f)
+                {
+                    hasMoved = true;
+                    float temp = endingx;
+                    endingx = startingx;
+                    startingx = temp;
+                    ActivateMoveSpell = false;
+                    t = 0f;
+                    return 0;
+                }
             }
-        }
-        else
-        {
-            transform.position = new Vector3(Mathf.Lerp(startingx,endingx, t), startingy, startingz);
-            t += speed * Time.deltaTime;
-            if (t > 1.0f)
+            else
             {
-                hasMoved = false;
-                hasMoved = true;
-                float temp = endingx;
-                endingx = startingx;
-                startingx = temp;
-                ActivateMoveSpell = false;
-                t = 0f;
-                return 0;
+                transform.localPosition = new Vector3(Mathf.Lerp(startingx,endingx, t), startingy, startingz);
+                t += speed * Time.deltaTime;
+                if (t > 1.0f)
+                {
+                    hasMoved = false;
+                    hasMoved = true;
+                    float temp = endingx;
+                    endingx = startingx;
+                    startingx = temp;
+                    ActivateMoveSpell = false;
+                    t = 0f;
+                    return 0;
+                }
             }
-        }
         
         
 
+            
+        }
         return 1;
     }
 

@@ -1,0 +1,270 @@
+fileFormatVersion: 2
+guid: 14be9b6a2259f7448a628c86d376d935
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: -623603649343465320
+    second: Scene
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.012
+    second: {fileID: 2100000, guid: 47baa12eceed3664295fdca8a73c0305, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.032
+    second: {fileID: 2100000, guid: 3e9354fa5458db04fa8cb910df6368e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.076
+    second: {fileID: 2100000, guid: a8b44ac2960b505468a5665d9d0573c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 52125def4543b754b85154e2849f21ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "be\u017Cowy planeta"
+    second: {fileID: 2100000, guid: e75d7cdebbb905248a557329b44298c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "bia\u0142y matowy"
+    second: {fileID: 2100000, guid: 233373d6bed437e4c9e3bc3aa1e080ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "br\u0105zowy mat"
+    second: {fileID: 2100000, guid: 31524ac2db6d7a141912ddb7a40a2928, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: czarny eliksir
+    second: {fileID: 2100000, guid: 744c0a82aba940343a1808e9108ccfc7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: czarny matowy
+    second: {fileID: 2100000, guid: 126c58b4a5e509f42b41c3d9f3a5ddfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: czerwony eliksir
+    second: {fileID: 2100000, guid: 6de73661ce9a2ce43bcca45a82161bfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fioletowy eliksir
+    second: {fileID: 2100000, guid: e272b42d8ce12dc42b5b373c8a7b45b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: granatowy
+    second: {fileID: 2100000, guid: 94a9b931930838346b4b90c195e54c4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: korek
+    second: {fileID: 2100000, guid: c2c02333fbc30134cb8c79d859ab6400, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "kryszta\u0142owy \u015Bwiec\u0105cy"
+    second: {fileID: 2100000, guid: 7249612991076fb43997deb058e172ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: niebieski eliksir
+    second: {fileID: 2100000, guid: 9daf94fe4b8545347b0c4ebdd1a67b95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: nowy eliksir
+    second: {fileID: 2100000, guid: ca5a40d843e996841b10c08a2c72992e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: okna
+    second: {fileID: 2100000, guid: 02385bf0dbce9e04b834b83f87bf00e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plakat zdj 1
+    second: {fileID: 2100000, guid: 57ad21fd2031d854c9fa2060e783b0ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plakat zdj 2
+    second: {fileID: 2100000, guid: 0493c348901aae84aa171a88f379a01e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plakat zdj 3
+    second: {fileID: 2100000, guid: 506823cfa7e0d814e90e75864718e618, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plakat zdj 4
+    second: {fileID: 2100000, guid: dfc52805b9f642c468bae2e6f95bea5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plakat zdj 5
+    second: {fileID: 2100000, guid: a9bd3600dc22f6a469b524f426cf5c51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plakat zdj 6
+    second: {fileID: 2100000, guid: 39a948f8653c00d4b92f234d1c042fd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "planeta br\u0105zowy mat"
+    second: {fileID: 2100000, guid: 58515258c0589df4886b798d57033ba8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "pod\u0142oga"
+    second: {fileID: 2100000, guid: 20ebfb781102e6843b7b6ba2cf49aaab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: srebrny
+    second: {fileID: 2100000, guid: 7e12683464612a3428a2ae88b4aeb788, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: srebrny ciemny
+    second: {fileID: 2100000, guid: 0c7d29f725db97e47ac5b819a95651ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: srebrny najciemniejszy
+    second: {fileID: 2100000, guid: c6a864f287910d446a92dcf2deed7318, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "szk\u0142o"
+    second: {fileID: 2100000, guid: 54c07c554fb642c4abc14bf3b366a10c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: zielony eliksir
+    second: {fileID: 2100000, guid: d2d968073588db64883cbacae1ea149e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "z\u0142oty"
+    second: {fileID: 2100000, guid: c527a8d879a71f640af70de5df6c5c34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "z\u0142oty jasny"
+    second: {fileID: 2100000, guid: 8a710676e3f7ad544a2ad56bba76ecee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u015Bciany"
+    second: {fileID: 2100000, guid: d83bd0db686651249be2bd1be6be2eb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u015Bwiec\u0105cy niebieski"
+    second: {fileID: 2100000, guid: 62453bc9fc2b4294c8622f1e227a847b, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

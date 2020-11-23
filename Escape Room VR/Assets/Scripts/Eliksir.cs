@@ -49,5 +49,8 @@ public class Eliksir : MonoBehaviour
         //Play Anim
         PotionAnimator.enabled = true;
         
+        
+        // aktywyje zaklecie przeuswania
+        GameObject.Find("Clock").GetComponent<SpellManager>().MoveSpellUnlocked = true;
     }
 }

@@ -31,7 +31,7 @@ public class LaserPointerWrapper : MonoBehaviour
                Debug.Log("Levitate object clicked");
                targetObject = e.target.gameObject;
 
-               SpellManager sp = targetObject.GetComponent<SpellManager>();
+               //SpellManager sp = targetObject.GetComponent<SpellManager>();
                /*if (sp.isLevitating)
                {
                    sp.isLevitating = false;
@@ -66,10 +66,11 @@ public class LaserPointerWrapper : MonoBehaviour
                Debug.Log("Button was entered");
            }
 
-           if (e.target.gameObject.tag == "Levitate")
+           if (e.target.gameObject.tag == "Levitate" || e.target.gameObject.tag == "Movable" || e.target.gameObject.tag == "Planet")
            {
                Debug.Log("Levitate object Inside");
                targetObject = e.target.gameObject;
+               
            }
            
        }

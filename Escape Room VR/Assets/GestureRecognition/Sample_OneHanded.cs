@@ -395,15 +395,26 @@ public class Sample_OneHanded : MonoBehaviour
             cylinder.transform.localScale = new Vector3((float)scale * 2, (float)scale, (float)scale * 2);
             created_objects.Add(cylinder);*/
 
+            
+
             var targetObject = laserPointerWrapper.GetTargetObject();
-            SpellManager spellManager = targetObject.GetComponent<SpellManager>();
-            if (spellManager.isLevitating)
+            if (targetObject.CompareTag("Planet"))
             {
-                spellManager.isLevitating = false;
+                // make planet move
             }
-            else
+            else if (targetObject.CompareTag("Levitate"))
             {
-                spellManager.isLevitating = true;
+
+
+                SpellManager spellManager = targetObject.GetComponent<SpellManager>();
+                if (spellManager.isLevitating)
+                {
+                    spellManager.isLevitating = false;
+                }
+                else
+                {
+                    spellManager.isLevitating = true;
+                }
             }
 
 
@@ -427,6 +438,16 @@ public class Sample_OneHanded : MonoBehaviour
             // {
             //     closest_object.transform.Rotate(new Vector3(0, 1, 0), -(float)scale * 400, Space.World);
             // }
+            var targetObject = laserPointerWrapper.GetTargetObject();
+            if (targetObject.CompareTag("Movable"))
+            {
+                SpellManager spellManager = targetObject.GetComponent<SpellManager>();
+                spellManager.MoveSpell();
+            }
+            
+            
+            
+            
         }
         else if (gesture_id == 3)
         {
@@ -452,7 +473,7 @@ public class Sample_OneHanded : MonoBehaviour
             // {
             //     RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f, 1.0f));
             // }
-            GameObject.Find("SpellManager").GetComponent<SpellManager>().TurnLightsOff();
+            GameObject.Find("SpellManager").GetComponent<SpellManager>().TurnLights();
         }
         else
         {
