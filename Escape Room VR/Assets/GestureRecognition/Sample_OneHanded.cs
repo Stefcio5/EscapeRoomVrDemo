@@ -442,8 +442,12 @@ public class Sample_OneHanded : MonoBehaviour
             if (targetObject.CompareTag("Movable"))
             {
                 SpellManager spellManager = targetObject.GetComponent<SpellManager>();
-                spellManager.MoveSpell();
+                spellManager.ActivateMoveSpell = true;
+                Debug.Log("Zegar sie porusza");
             }
+            Debug.Log("Cos sie popsulo");
+            
+            
             
             
             
@@ -453,12 +457,12 @@ public class Sample_OneHanded : MonoBehaviour
         {
             // "shake" or "scrap" gesture: delete closest object
             HUDText.text = "Identified a SHAKE gesture!";
-            GameObject closest_object = getClosestObject(pos);
+            /*GameObject closest_object = getClosestObject(pos);
             if (closest_object != null)
             {
                 Destroy(closest_object);
                 created_objects.Remove(closest_object);
-            }
+            }*/
         }
         else if (gesture_id == 4)
         {
@@ -473,7 +477,7 @@ public class Sample_OneHanded : MonoBehaviour
             // {
             //     RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f, 1.0f));
             // }
-            GameObject.Find("SpellManager").GetComponent<SpellManager>().TurnLights();
+            GameObject.Find("SpellManger").GetComponent<SpellManager>().TurnLights();
         }
         else
         {

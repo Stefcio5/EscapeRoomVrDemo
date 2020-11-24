@@ -26,6 +26,8 @@ public class SpellManager : MonoBehaviour
     [Header("Lights")] 
     public GameObject lights;
 
+    public GameObject potionReceipt;
+
     public bool lightSpellUnlocked = false;
 
     void Start()
@@ -72,18 +74,19 @@ public class SpellManager : MonoBehaviour
         if (lights.activeSelf)
         {
             lights.SetActive(false);
+            potionReceipt.gameObject.SetActive(true);
         }
         else
         {
             lights.SetActive(true);
+            potionReceipt.gameObject.SetActive(false);
         }
         
     }
 
     public int MoveSpell()
     {
-        if (MoveSpellUnlocked)
-        {
+        
             // has moved nie potrzebne
             if (!hasMoved)
             {
@@ -116,12 +119,7 @@ public class SpellManager : MonoBehaviour
                     return 0;
                 }
             }
-        
-        
-
-            
-        }
-        return 1;
+            return 1;
     }
 
     // Update is called once per frame
@@ -134,11 +132,13 @@ public class SpellManager : MonoBehaviour
                 
             }
 
-            if (ActivateMoveSpell)
+            if (MoveSpellUnlocked)
             {
-                MoveSpell();
+                if (ActivateMoveSpell)
+                {
+                    MoveSpell();
+                }
             }
-
         }
     }
 

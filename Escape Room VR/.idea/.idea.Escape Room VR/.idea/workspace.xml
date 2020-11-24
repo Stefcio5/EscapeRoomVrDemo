@@ -36,10 +36,10 @@
         <option value="$PROJECT_DIR$/Assets/PotionTriggerController.cs" />
         <option value="$PROJECT_DIR$/Assets/PotionSlot.cs" />
         <option value="$PROJECT_DIR$/Assets/Planet.cs" />
-        <option value="$PROJECT_DIR$/Assets/GestureRecognition/Sample_OneHanded.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/SpellManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Eliksir.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LaserPointerWrapper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Eliksir.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SpellManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/GestureRecognition/Sample_OneHanded.cs" />
       </list>
     </option>
   </component>
@@ -103,7 +103,8 @@
       <workItem from="1605285191665" duration="10614000" />
       <workItem from="1605362449021" duration="7517000" />
       <workItem from="1605454038590" duration="8063000" />
-      <workItem from="1606148239164" duration="5140000" />
+      <workItem from="1606148239164" duration="5416000" />
+      <workItem from="1606160921625" duration="7202000" />
     </task>
     <servers />
   </component>

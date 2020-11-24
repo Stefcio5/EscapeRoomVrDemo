@@ -38,6 +38,11 @@ public class Eliksir : MonoBehaviour
             {
                 PlayAnimation();
             }
+
+            if (PotionNumber == 6)
+            {
+                GameObject.Find("ptak").GetComponent<Animator>().enabled = true;
+            }
             
             
 
