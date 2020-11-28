@@ -67,6 +67,7 @@
      <Compile Include="Assets\GestureRecognition\Sample_Pixie.cs" />
      <Compile Include="Assets\GestureRecognition\Sample_TwoHanded.cs" />
      <Compile Include="Assets\GestureRecognizer.cs" />
+     <Compile Include="Assets\GramofonController.cs" />
      <Compile Include="Assets\Levitation.cs" />
      <Compile Include="Assets\Levitation2.cs" />
      <Compile Include="Assets\MainMenu.cs" />

@@ -38,4 +38,10 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void EndGame()
+    {
+        // ekran koncowy
+        Debug.Log("Ekran koncowy");
+    }
 }

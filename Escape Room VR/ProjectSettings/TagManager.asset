@@ -8,6 +8,7 @@ TagManager:
   - FxTemporaire
   - Levitate
   - Movable
+  - Planet
   layers:
   - Default
   - TransparentFX

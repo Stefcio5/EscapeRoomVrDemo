@@ -29,17 +29,18 @@
         <option value="$PROJECT_DIR$/../../../../Program Files/Unity/Hub/Editor/2019.4.12f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/InputModules/BaseInput.cs" />
         <option value="$PROJECT_DIR$/Assets/GestureRecognizer.cs" />
         <option value="$PROJECT_DIR$/Assets/Levitation2.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/OpenDrawerAnimation.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Potion.cs" />
         <option value="$PROJECT_DIR$/Assets/PotionController.cs" />
         <option value="$PROJECT_DIR$/Assets/PotionTriggerController.cs" />
         <option value="$PROJECT_DIR$/Assets/PotionSlot.cs" />
-        <option value="$PROJECT_DIR$/Assets/Planet.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LaserPointerWrapper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Eliksir.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SpellManager.cs" />
         <option value="$PROJECT_DIR$/Assets/GestureRecognition/Sample_OneHanded.cs" />
+        <option value="$PROJECT_DIR$/Assets/Planet.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/OpenDrawerAnimation.cs" />
+        <option value="$PROJECT_DIR$/Assets/GramofonController.cs" />
       </list>
     </option>
   </component>
@@ -105,6 +106,9 @@
       <workItem from="1605454038590" duration="8063000" />
       <workItem from="1606148239164" duration="5416000" />
       <workItem from="1606160921625" duration="7202000" />
+      <workItem from="1606320347134" duration="2599000" />
+      <workItem from="1606408791285" duration="7482000" />
+      <workItem from="1606494912113" duration="2363000" />
     </task>
     <servers />
   </component>

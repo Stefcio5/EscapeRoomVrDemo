@@ -31,6 +31,12 @@ public class Planet : MonoBehaviour
     public float speed = 0.05f;
     public bool Shrinking;
     public float ShrinkingTime = 0f;
+    public bool CanShrink = true;
+
+    public static int PlanetCount = 0;
+    public bool PlanetOrbiting;
+
+    private GameManager gameManager;
     
     
     
@@ -40,6 +46,8 @@ public class Planet : MonoBehaviour
 
         NextPos = positions[0];
         minScale = (transform.localScale / 2);
+        PlanetOrbiting = false;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -58,12 +66,18 @@ public class Planet : MonoBehaviour
                 timer = 0;
             }
             Rotate();
+            PlanetOrbiting = true;
             //transform.LookAt(centerPoint);
         }
 
         if (Shrinking)
         {
             ShrinkPlanet();
+        }
+        IncrementPlanetCount();
+        if (PlanetCount == 8)
+        {
+            gameManager.EndGame();
         }
     }
 
@@ -74,14 +88,14 @@ public class Planet : MonoBehaviour
             float x = -Mathf.Cos(timer) * xSpread;
             float z = Mathf.Sin(timer) * zSpread;
             Vector3 pos = new Vector3(x, yOffset, z);
-            transform.position = pos + centerPoint.position;
+            transform.position = pos + centerPoint.localPosition;
         }
         else
         {
             float x = Mathf.Cos(timer) * xSpread;
             float z = Mathf.Sin(timer) * zSpread;
             Vector3 pos = new Vector3(x, yOffset, z);
-            transform.position = pos + centerPoint.position;
+            transform.position = pos + centerPoint.localPosition;
         }
     }
 
@@ -94,6 +108,7 @@ public class Planet : MonoBehaviour
             {
                 // stop moving
                 PlanetMoving = false;
+                orbit = true;
             }
             NextPos = positions[NextPosIndex];
         }
@@ -105,15 +120,29 @@ public class Planet : MonoBehaviour
 
     public void ShrinkPlanet()
     {
-        ShrinkingTime += speed * Time.deltaTime;
+        if (CanShrink)
+        {
+            ShrinkingTime += speed * Time.deltaTime;
 
-        if (transform.localScale != minScale)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, minScale, ShrinkingTime);
+            if (transform.localScale != minScale)
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, minScale, ShrinkingTime);
+            }
+            else
+            {
+                Shrinking = false;
+                CanShrink = false;
+                PlanetMoving = true;
+            }
         }
-        else
+    }
+
+    public void IncrementPlanetCount()
+    {
+        if (PlanetOrbiting)
         {
-            Shrinking = false;
+            PlanetCount++;
+            PlanetOrbiting = false;
         }
     }
 }

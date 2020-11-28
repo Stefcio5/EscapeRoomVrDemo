@@ -401,6 +401,7 @@ public class Sample_OneHanded : MonoBehaviour
             if (targetObject.CompareTag("Planet"))
             {
                 // make planet move
+                targetObject.GetComponent<Planet>().Shrinking = true;
             }
             else if (targetObject.CompareTag("Levitate"))
             {
