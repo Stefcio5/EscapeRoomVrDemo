@@ -402,6 +402,8 @@ public class Sample_OneHanded : MonoBehaviour
             {
                 // make planet move
                 targetObject.GetComponent<Planet>().Shrinking = true;
+                targetObject.GetComponent<Planet>().IncrementPlanetCount();
+                
             }
             else if (targetObject.CompareTag("Levitate"))
             {
@@ -440,7 +442,9 @@ public class Sample_OneHanded : MonoBehaviour
             //     closest_object.transform.Rotate(new Vector3(0, 1, 0), -(float)scale * 400, Space.World);
             // }
             var targetObject = laserPointerWrapper.GetTargetObject();
-            if (targetObject.CompareTag("Movable"))
+
+            
+            if (targetObject.gameObject.CompareTag("Movable"))
             {
                 SpellManager spellManager = targetObject.GetComponent<SpellManager>();
                 spellManager.ActivateMoveSpell = true;

@@ -33,14 +33,14 @@
         <option value="$PROJECT_DIR$/Assets/PotionController.cs" />
         <option value="$PROJECT_DIR$/Assets/PotionTriggerController.cs" />
         <option value="$PROJECT_DIR$/Assets/PotionSlot.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/LaserPointerWrapper.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Eliksir.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SpellManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/GestureRecognition/Sample_OneHanded.cs" />
-        <option value="$PROJECT_DIR$/Assets/Planet.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OpenDrawerAnimation.cs" />
         <option value="$PROJECT_DIR$/Assets/GramofonController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LaserPointerWrapper.cs" />
+        <option value="$PROJECT_DIR$/Assets/GestureRecognition/Sample_OneHanded.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Eliksir.cs" />
+        <option value="$PROJECT_DIR$/Assets/Planet.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -109,6 +109,9 @@
       <workItem from="1606320347134" duration="2599000" />
       <workItem from="1606408791285" duration="7482000" />
       <workItem from="1606494912113" duration="2363000" />
+      <workItem from="1606577394117" duration="4340000" />
+      <workItem from="1606582875087" duration="98000" />
+      <workItem from="1606583002477" duration="9401000" />
     </task>
     <servers />
   </component>

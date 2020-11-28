@@ -34,7 +34,7 @@ public class Planet : MonoBehaviour
     public bool CanShrink = true;
 
     public static int PlanetCount = 0;
-    public bool PlanetOrbiting;
+    public bool isSpellPageActive = false;
 
     private GameManager gameManager;
     
@@ -46,12 +46,11 @@ public class Planet : MonoBehaviour
 
         NextPos = positions[0];
         minScale = (transform.localScale / 2);
-        PlanetOrbiting = false;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (PlanetMoving)
         {
@@ -66,7 +65,6 @@ public class Planet : MonoBehaviour
                 timer = 0;
             }
             Rotate();
-            PlanetOrbiting = true;
             //transform.LookAt(centerPoint);
         }
 
@@ -74,9 +72,15 @@ public class Planet : MonoBehaviour
         {
             ShrinkPlanet();
         }
-        IncrementPlanetCount();
-        if (PlanetCount == 8)
+        
+        if (PlanetCount == 1 && isSpellPageActive == false)
         {
+            gameManager.ShowSpellPage(gameManager.Spell2Page);
+            isSpellPageActive = true;
+        }
+        if (PlanetCount == 8 && gameManager.isGameFinished == false)
+        {
+            
             gameManager.EndGame();
         }
     }
@@ -139,10 +143,8 @@ public class Planet : MonoBehaviour
 
     public void IncrementPlanetCount()
     {
-        if (PlanetOrbiting)
-        {
-            PlanetCount++;
-            PlanetOrbiting = false;
-        }
+        PlanetCount++;
+        Debug.Log(PlanetCount);
+        
     }
 }

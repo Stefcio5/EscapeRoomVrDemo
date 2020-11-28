@@ -48,7 +48,7 @@ public class LaserPointerWrapper : MonoBehaviour
                Debug.Log("Play Button was clicked");
                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
            }
-           else if (e.target.name == "QuitButton")
+           else if (e.target.name == "QuitButton" || e.target.name == "FinButton")
            {
                Debug.Log("Quit Button was clicked");
                Application.Quit();

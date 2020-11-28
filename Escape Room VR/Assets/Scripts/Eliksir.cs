@@ -13,10 +13,13 @@ public class Eliksir : MonoBehaviour
     public static int PotionNumber = 0;
 
     private Animator PotionAnimator;
+
+    private GameManager gamemanager;
     // Start is called before the first frame update
     void Start()
     {
         PotionAnimator = GameObject.Find("eliksiry animacja").GetComponent<Animator>();
+        gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -37,11 +40,13 @@ public class Eliksir : MonoBehaviour
             if (PotionNumber == 5)
             {
                 PlayAnimation();
+                gamemanager.ShowSpellPage(gamemanager.Spell3Page);
             }
 
             if (PotionNumber == 6)
             {
                 GameObject.Find("ptak").GetComponent<Animator>().enabled = true;
+                
             }
             
             
