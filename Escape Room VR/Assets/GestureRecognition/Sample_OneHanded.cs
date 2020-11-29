@@ -483,7 +483,7 @@ public class Sample_OneHanded : MonoBehaviour
             //     RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f, 1.0f));
             // }
 
-            if (planet.isSpellPageActive)
+            if (Planet.isSpellPageActive)
             {
                 GameObject.Find("SpellManger").GetComponent<SpellManager>().TurnLights();
             }

@@ -34,7 +34,7 @@ public class Planet : MonoBehaviour
     public bool CanShrink = true;
 
     public static int PlanetCount = 0;
-    public bool isSpellPageActive = false;
+    public static bool isSpellPageActive = false;
 
     private GameManager gameManager;
     
