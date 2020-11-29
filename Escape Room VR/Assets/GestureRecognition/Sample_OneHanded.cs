@@ -91,7 +91,7 @@ public class Sample_OneHanded : MonoBehaviour
     public LaserPointerWrapper laserPointerWrapper;
 
     public GameObject starHolder;
-    
+    public Planet planet;
     
     
     
@@ -444,13 +444,13 @@ public class Sample_OneHanded : MonoBehaviour
             var targetObject = laserPointerWrapper.GetTargetObject();
 
             
-            if (targetObject.gameObject.CompareTag("Movable"))
+            if (targetObject.CompareTag("Movable"))
             {
                 SpellManager spellManager = targetObject.GetComponent<SpellManager>();
                 spellManager.ActivateMoveSpell = true;
                 Debug.Log("Zegar sie porusza");
             }
-            Debug.Log("Cos sie popsulo");
+            
             
             
             
@@ -482,7 +482,12 @@ public class Sample_OneHanded : MonoBehaviour
             // {
             //     RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f, 1.0f));
             // }
-            GameObject.Find("SpellManger").GetComponent<SpellManager>().TurnLights();
+
+            if (planet.isSpellPageActive)
+            {
+                GameObject.Find("SpellManger").GetComponent<SpellManager>().TurnLights();
+            }
+            //GameObject.Find("SpellManger").GetComponent<SpellManager>().TurnLights();
         }
         else
         {

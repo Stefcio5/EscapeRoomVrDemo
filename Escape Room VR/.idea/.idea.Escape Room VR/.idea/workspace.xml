@@ -37,10 +37,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/OpenDrawerAnimation.cs" />
         <option value="$PROJECT_DIR$/Assets/GramofonController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LaserPointerWrapper.cs" />
-        <option value="$PROJECT_DIR$/Assets/GestureRecognition/Sample_OneHanded.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Eliksir.cs" />
         <option value="$PROJECT_DIR$/Assets/Planet.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/GestureRecognition/Sample_OneHanded.cs" />
       </list>
     </option>
   </component>
@@ -112,6 +112,7 @@
       <workItem from="1606577394117" duration="4340000" />
       <workItem from="1606582875087" duration="98000" />
       <workItem from="1606583002477" duration="9401000" />
+      <workItem from="1606613130185" duration="3041000" />
     </task>
     <servers />
   </component>

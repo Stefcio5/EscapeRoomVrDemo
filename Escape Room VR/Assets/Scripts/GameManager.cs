@@ -78,6 +78,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Ekran koncowy");
         EndScreen.SetActive(true);
         EndGameTeleport.gameObject.SetActive(true);
-        EndScreenTime.GetComponent<TextMeshPro>().SetText("Your time: " + (time).ToString("0"));
+        EndScreenTime.GetComponent<TextMeshProUGUI>().SetText("Your time: " + (time).ToString("0"));
     }
 }
