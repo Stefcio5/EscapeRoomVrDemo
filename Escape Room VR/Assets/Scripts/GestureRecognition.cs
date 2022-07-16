@@ -105,15 +105,13 @@
  * 
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using UnityEngine;
 
-public class GestureRecognition {
+public class GestureRecognition
+{
 
     //                                                          ________________________________
     //_________________________________________________________/  ignoreHeadRotationLeftRight
@@ -755,7 +753,7 @@ public class GestureRecognition {
     {
         return GestureRecognition_cancelStroke(m_gro);
     }
-    
+
     //                                                      ____________________________________
     //_____________________________________________________/        contdIdentify()
     /// <summary>

@@ -4,15 +4,12 @@
 //
 //=============================================================================
 
-using UnityEngine;
-using UnityEditor;
-using System.IO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 using System.Reflection;
-
-using Valve.VR.InteractionSystem;
+using UnityEditor;
+using UnityEngine;
 
 #if OPENVR_XR_API
 using UnityEditor.XR.Management.Metadata;

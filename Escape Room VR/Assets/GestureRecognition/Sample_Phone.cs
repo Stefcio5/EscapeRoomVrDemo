@@ -26,16 +26,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using System.IO;
-using System.Runtime.InteropServices;
 using AOT;
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR;
-using UnityEngine.Networking;
 
 public class Sample_Phone : MonoBehaviour
 {
@@ -50,12 +46,12 @@ public class Sample_Phone : MonoBehaviour
     // or: -1 if not currently recording a new gesture,
     // or: -2 if the AI is currently trying to learn to identify gestures
     // or: -3 if the AI has recently finished learning to identify gestures
-	private int recording_gesture = -1; 
+    private int recording_gesture = -1;
 
     // Last reported recognition performance (during training).
     // 0 = 0% correctly recognized, 1 = 100% correctly recognized.
     private double last_performance_report = 0;
-    
+
 
     // Button ID for recording/performing a gesture.
     private const int ButtonID_None = 0;
@@ -108,7 +104,7 @@ public class Sample_Phone : MonoBehaviour
         if (gesture_name_suggestions_list == null)
         {
             gesture_name_suggestions_list = new List<string>();
-            for (int i=0; i< gesture_name_suggestions.Length; i++)
+            for (int i = 0; i < gesture_name_suggestions.Length; i++)
             {
                 gesture_name_suggestions_list.Insert(0, gesture_name_suggestions[i]);
             }
@@ -128,7 +124,7 @@ public class Sample_Phone : MonoBehaviour
     GCHandle me;
 
     // Initialization:
-    void Start ()
+    void Start()
     {
         HUDText = GameObject.Find("HUDText").GetComponent<Text>();
         me = GCHandle.Alloc(this);
@@ -136,11 +132,11 @@ public class Sample_Phone : MonoBehaviour
         // Create a first gesture to record samples for
         string random_word = getRandomWord();
         recording_gesture = gr.createGesture(random_word);
-        HUDText.text = "\n\n[TOUCH AND HOLD HERE]\nto record gesture sample.\nGesture keyword:\n"+ random_word;
+        HUDText.text = "\n\n[TOUCH AND HOLD HERE]\nto record gesture sample.\nGesture keyword:\n" + random_word;
 
         Input.gyro.enabled = true;
     }
-    
+
 
     // Update:
     void Update()
@@ -170,14 +166,18 @@ public class Sample_Phone : MonoBehaviour
                         button_id = ButtonID_Exit;
                     }
                 }
-            } else if (touch.phase == TouchPhase.Ended) {
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
                 button_state = ButtonState_Released;
             }
-        } else {
+        }
+        else
+        {
             button_id = ButtonID_None;
             button_state = ButtonState_Idle;
         }
-        
+
         float escape = Input.GetAxis("escape");
         if (escape > 0.0f)
         {
@@ -188,9 +188,10 @@ public class Sample_Phone : MonoBehaviour
         {
             Application.Quit();
         }
-        
+
         // If recording_gesture is -3, that means that the AI has recently finished learning a new gesture.
-        if (recording_gesture == -3) {
+        if (recording_gesture == -3)
+        {
             // Show "finished" message.
             double performance = gr.recognitionScore();
             HUDText.text = "Training finished!\n(Performance = " + (performance * 100.0) + "%)\n\n[TOUCH AND HOLD HERE]\nto perform a gesture\n";
@@ -198,23 +199,27 @@ public class Sample_Phone : MonoBehaviour
             recording_gesture = -1;
         }
         // If recording_gesture is -2, that means that the AI is currently learning a new gesture.
-        if (recording_gesture == -2) {
+        if (recording_gesture == -2)
+        {
             // Show "please wait" message
             HUDText.text = "[TOUCH HERE]\nto stop training\n\n\n\n\n\n\n...training...\n\n(" + (last_performance_report * 100.0) + " %)\n\n\n\n\n";
-            if (button_id == ButtonID_Train && button_state == ButtonState_Released) {
+            if (button_id == ButtonID_Train && button_state == ButtonState_Released)
+            {
                 // Button pressed: stop the learning process.
                 gr.stopTraining();
                 recording_gesture = -3;
             }
             return;
-		}
+        }
         // Else: if we arrive here, we're not in training/learning mode,
         // so the user can draw gestures.
-        
+
 
         // If recording_gesture is -1, we're currently not recording a new gesture.
-        if (recording_gesture == -1) {
-            if (button_id == ButtonID_Train && button_state == ButtonState_Released) {
+        if (recording_gesture == -1)
+        {
+            if (button_id == ButtonID_Train && button_state == ButtonState_Released)
+            {
                 string random_word = getRandomWord();
                 recording_gesture = gr.createGesture(random_word);
                 // from now on: recording a new gesture
@@ -224,11 +229,13 @@ public class Sample_Phone : MonoBehaviour
         }
 
         // If the user is not yet dragging (pressing the trigger) on either controller, he hasn't started a gesture yet.
-        if (button_id == ButtonID_Record) {
-            if (!making_stroke) {
+        if (button_id == ButtonID_Record)
+        {
+            if (!making_stroke)
+            {
                 // If we arrive here: either trigger was pressed, so we start the gesture.
-                Vector3 hmd_p = new Vector3(0.0f,0.0f,0.0f);
-                Quaternion hmd_q = new Quaternion(0.0f,0.0f,0.0f,1.0f);
+                Vector3 hmd_p = new Vector3(0.0f, 0.0f, 0.0f);
+                Quaternion hmd_q = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
                 gr.startStroke(hmd_p, hmd_q, recording_gesture);
                 making_stroke = true;
                 RenderSettings.skybox.SetColor("_Tint", new Color(0.53f, 0.17f, 0.17f, 1.0f));
@@ -288,7 +295,7 @@ public class Sample_Phone : MonoBehaviour
             Vector3 dir2 = Vector3.zero; // This will receive the minor direction of the gesture (direction of smallest expansion).
             int gesture_id = gr.endStroke(ref similarity, ref pos, ref scale, ref dir0, ref dir1, ref dir2);
             RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f, 1.0f));
-            if (recording_gesture >= 0 )
+            if (recording_gesture >= 0)
             {
                 int num_samples = gr.getGestureNumberOfSamples(recording_gesture);
                 string gesture_name = gr.getGestureName(recording_gesture);
@@ -303,9 +310,10 @@ public class Sample_Phone : MonoBehaviour
             making_stroke = false;
             return;
         }
-        
+
         // 
-        if (button_id == ButtonID_Train && button_state == ButtonState_Released) {
+        if (button_id == ButtonID_Train && button_state == ButtonState_Released)
+        {
             // Currently recording samples for a custom gesture - check how many we have recorded so far.
             // Enough samples recorded. Start the learning process.
             HUDText.text = "Learning gestures...";
@@ -317,7 +325,8 @@ public class Sample_Phone : MonoBehaviour
             gr.setMaxTrainingTime(20);
             // Set recording_gesture to -2 to indicate that we're currently in learning mode.
             recording_gesture = -2;
-            if (gr.startTraining() == false) {
+            if (gr.startTraining() == false)
+            {
                 HUDText.text = "Failed to start training";
             }
             return;
@@ -334,7 +343,7 @@ public class Sample_Phone : MonoBehaviour
         // Update the performance indicator with the latest estimate.
         me.last_performance_report = performance;
     }
-    
+
 
     // Callback function to be called by the gesture recognition plug-in when the learning process was finished.
     [MonoPInvokeCallback(typeof(GestureRecognition.TrainingCallbackFunction))]

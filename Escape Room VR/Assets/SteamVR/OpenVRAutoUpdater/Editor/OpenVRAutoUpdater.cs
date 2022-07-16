@@ -5,9 +5,7 @@ using Unity.XR.OpenVR.SimpleJSON;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace Unity.XR.OpenVR
 {
@@ -339,7 +337,7 @@ namespace Unity.XR.OpenVR
                                                    "\"scopes\": [" +
                                                    "\"com.valvesoftware\", \"com.valvesoftware.unity.openvr\"" +
                                                    "] }";
-        private const string scopedRegistryNodeTemplate = "[ {0} ]"; 
+        private const string scopedRegistryNodeTemplate = "[ {0} ]";
 
         //load packages.json
         //check for existing scoped registries

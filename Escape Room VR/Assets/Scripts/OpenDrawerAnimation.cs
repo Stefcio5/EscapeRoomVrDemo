@@ -1,23 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using UnityEngine;
+﻿using UnityEngine;
 using Valve.VR.InteractionSystem;
 
 public class OpenDrawerAnimation : MonoBehaviour
 {
-    
+
     public HoverButton hoverButton;
-
     private Animator drawerAnimator;
-    
-
     private string currentState;
-    
-    //Animation States
-    private const string DRAWER_ANIMATION = "Otwieranie";
-    
-    // Start is called before the first frame update
+    private const string DRAWER_ANIMATION = "Open Drawer";
+
     void Start()
     {
         //hoverButton.onButtonDown.AddListener(OnButtonDown);
@@ -37,17 +28,7 @@ public class OpenDrawerAnimation : MonoBehaviour
     void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
-        
         drawerAnimator.Play(newState);
-
         currentState = newState;
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

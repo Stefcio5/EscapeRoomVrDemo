@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
- 
+
 
 public class GameManager : MonoBehaviour
 {
@@ -26,14 +24,21 @@ public class GameManager : MonoBehaviour
 
     public float time = 0f;
 
-    public bool isGameFinished;
-    // Start is called before the first frame update
-    void Start()
+    public bool isGameFinished = false;
+    public static GameManager Instance;
+
+    void Awake()
     {
-        isGameFinished = false;
-        
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
-// Wyłącza Animator szafki po podniesieniu różdzki
+    // Disable drawer animator after picking up wand
     public void DisableAnimator()
     {
         var animator = Drawer.GetComponent<Animator>();
@@ -53,29 +58,33 @@ public class GameManager : MonoBehaviour
         spells.enabled = false;
     }
 
-    public void ShowSpellPage(GameObject spellPage)
+    public IEnumerator ShowSpellPage(GameObject spellPage)
     {
         spellPage.gameObject.SetActive(true);
         BookLight.SetActive(true);
+        yield return new WaitForSeconds(5);
+        BookLight.SetActive(false);
+    }
+    public void ShowFirstSpellPage()
+    {
+        if (!Spell1Page.gameObject.activeSelf)
+        {
+            StartCoroutine(ShowSpellPage(Spell1Page));
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!isGameFinished)
         {
             time += Time.deltaTime;
         }
-        
-        
     }
 
     public void EndGame()
     {
         isGameFinished = true;
         EndGameDoors.GetComponent<Animator>().Play("EndGameDoorAnimation");
-        // ekran koncowy
-        Debug.Log("Ekran koncowy");
         EndScreen.SetActive(true);
         EndGameTeleport.gameObject.SetActive(true);
         EndScreenTime.GetComponent<TextMeshProUGUI>().SetText("Your time: " + (time).ToString("0"));

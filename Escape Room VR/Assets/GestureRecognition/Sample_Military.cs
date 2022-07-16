@@ -26,15 +26,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using System.IO;
-using System.Runtime.InteropServices;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using UnityEngine.Networking;
 
 
 public class Sample_Military : MonoBehaviour
@@ -42,7 +38,7 @@ public class Sample_Military : MonoBehaviour
     // Convenience ID's for the "left" and "right" sub-gestures.
     public const int Side_Left = 0;
     public const int Side_Right = 1;
-    
+
     // Whether the user is currently pressing the contoller trigger.
     private bool trigger_pressed_left = false;
     private bool trigger_pressed_right = false;
@@ -66,7 +62,7 @@ public class Sample_Military : MonoBehaviour
     private RawImage illustration_image;
 
     // Temporary storage for objects to display the gesture stroke.
-    List<string> stroke = new List<string>(); 
+    List<string> stroke = new List<string>();
 
     // Temporary counter variable when creating objects for the stroke display:
     int stroke_index = 0;
@@ -95,7 +91,7 @@ public class Sample_Military : MonoBehaviour
     };
 
     // Initialization:
-    void Start ()
+    void Start()
     {
         // Set the welcome message.
         HUDText = GameObject.Find("HUDText").GetComponent<Text>();
@@ -135,7 +131,7 @@ public class Sample_Military : MonoBehaviour
             HUDText.text = "Failed to load sample gesture database file.";
             return;
         }
-        
+
         // Show the first gesture
         illustration = GameObject.Find("GestureIllustration");
         illustration_image = illustration.GetComponent<RawImage>();
@@ -180,7 +176,8 @@ public class Sample_Military : MonoBehaviour
         {
             controller_oculus_left.SetActive(true);
             controller_oculus_right.SetActive(true);
-        } else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
+        }
+        else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
         {
             controller_vive_left.SetActive(true);
             controller_vive_right.SetActive(true);
@@ -195,11 +192,11 @@ public class Sample_Military : MonoBehaviour
             controller_dummy_left.SetActive(true);
             controller_dummy_right.SetActive(true);
         }
-        
+
         GameObject ball = GameObject.Find("ball");
         ball.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
     }
-    
+
 
     // Update:
     void Update()
@@ -211,9 +208,10 @@ public class Sample_Military : MonoBehaviour
         }
         float trigger_left = Input.GetAxis("LeftControllerTrigger");
         float trigger_right = Input.GetAxis("RightControllerTrigger");
-        
+
         // If the user presses either controller's trigger, we start a new gesture.
-        if (trigger_pressed_left == false && trigger_left > 0.9) { 
+        if (trigger_pressed_left == false && trigger_left > 0.9)
+        {
             // Controller trigger pressed.
             trigger_pressed_left = true;
             GameObject hmd = GameObject.Find("Main Camera"); // alternative: Camera.main.gameObject
@@ -232,7 +230,8 @@ public class Sample_Military : MonoBehaviour
             gc.startStroke(Side_Right, hmd_p, hmd_q);
             gesture_started = true;
         }
-        if (gesture_started == false) {
+        if (gesture_started == false)
+        {
             // nothing to do.
             return;
         }
@@ -245,7 +244,8 @@ public class Sample_Military : MonoBehaviour
                 // User let go of a trigger and held controller still
                 gc.endStroke(Side_Left);
                 trigger_pressed_left = false;
-            } else
+            }
+            else
             {
                 // User still dragging or still moving after trigger pressed
                 GameObject left_hand = GameObject.Find("Left Hand");
@@ -282,11 +282,12 @@ public class Sample_Military : MonoBehaviour
         gesture_started = false;
 
         // Delete the objectes that we used to display the gesture.
-        foreach (string ball in stroke) {
+        foreach (string ball in stroke)
+        {
             Destroy(GameObject.Find(ball));
             stroke_index = 0;
         }
-        
+
         int gesture_combination_id = gc.identifyGestureCombination();
         if (gesture_combination_id < 0)
         {
@@ -294,13 +295,13 @@ public class Sample_Military : MonoBehaviour
             return; // something went wrong
         }
         string gesture_combination_name = gc.getGestureCombinationName(gesture_combination_id);
-        if (current_tutorial_step >=0)
+        if (current_tutorial_step >= 0)
         {
             // currently in tutorial mode
             if (String.Compare(gesture_combination_name, 0, gestures[current_tutorial_step], 0, gestures[current_tutorial_step].Length, true) != 0)
             {
                 HUDText.text = "INCORRECT!\nPlease try again."; // \nRequested gesture was: '"+ gestures[current_tutorial_step]+"'\nDetected gesture was: '"+ gesture_combination_name+"'\nPlease try again.";
-                
+
             }
             else
             {
@@ -313,7 +314,8 @@ public class Sample_Military : MonoBehaviour
 #else
                     illustration_image.texture = Resources.Load<Texture>(illustration_path + gestures[current_tutorial_step]);
 #endif
-                } else
+                }
+                else
                 {
                     HUDText.text = "CORRECT!\nTutorial finished.\nFeel free to try out any of the gestures now.";
                     current_tutorial_step = -1;
@@ -356,8 +358,8 @@ public class Sample_Military : MonoBehaviour
         System.Random random = new System.Random();
         ball.transform.position = p;
         ball.transform.rotation = new Quaternion((float)random.NextDouble() - 0.5f, (float)random.NextDouble() - 0.5f, (float)random.NextDouble() - 0.5f, (float)random.NextDouble() - 0.5f).normalized;
-        ball.transform.localScale    = new Vector3(0.5f, 0.5f, 0.5f);
+        ball.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         stroke.Add(ball.name);
     }
-    
+
 }

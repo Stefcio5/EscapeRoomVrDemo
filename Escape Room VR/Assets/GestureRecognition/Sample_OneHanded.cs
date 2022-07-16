@@ -26,17 +26,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 using AOT;
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using UnityEngine.Networking;
 using Valve.VR;
 
 public class Sample_OneHanded : MonoBehaviour
@@ -55,13 +51,13 @@ public class Sample_OneHanded : MonoBehaviour
 
     // The text field to display instructions.
     private Text HUDText;
-    
+
     public SteamVR_Action_Boolean grabPinchAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");
     public SteamVR_Input_Sources handType;
-    
+
 
     // The game object associated with the currently active controller (if any):
-    private GameObject           active_controller = null;
+    private GameObject active_controller = null;
 
     // The game object associated with the currently active controller (if any):
     private bool button_a_pressed = false;
@@ -70,17 +66,17 @@ public class Sample_OneHanded : MonoBehaviour
     // or: -1 if not currently recording a new gesture,
     // or: -2 if the AI is currently trying to learn to identify gestures
     // or: -3 if the AI has recently finished learning to identify gestures
-    public int recording_gesture = -1; 
+    public int recording_gesture = -1;
 
     // Last reported recognition performance (during training).
     // 0 = 0% correctly recognized, 1 = 100% correctly recognized.
-    public double last_performance_report = 0; 
+    public double last_performance_report = 0;
 
     // Temporary storage for objects to display the gesture stroke.
-    List<string> stroke = new List<string>(); 
+    List<string> stroke = new List<string>();
 
     // Temporary counter variable when creating objects for the stroke display:
-    int stroke_index = 0; 
+    int stroke_index = 0;
 
     // List of Objects created with gestures:
     List<GameObject> created_objects = new List<GameObject>();
@@ -92,9 +88,9 @@ public class Sample_OneHanded : MonoBehaviour
 
     public GameObject starHolder;
     public Planet planet;
-    
-    
-    
+
+
+
 
     private void Awake()
     {
@@ -103,7 +99,7 @@ public class Sample_OneHanded : MonoBehaviour
 
 
     // Initialization:
-    void Start ()
+    void Start()
     {
         // Set the welcome message.
         HUDText = GameObject.Find("HUDText").GetComponent<Text>();
@@ -194,7 +190,8 @@ public class Sample_OneHanded : MonoBehaviour
         {
             // controller_oculus_left.SetActive(true);
             // controller_oculus_right.SetActive(true);
-        } else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
+        }
+        else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
         {
             // controller_vive_left.SetActive(true);
             // controller_vive_right.SetActive(true);
@@ -209,16 +206,16 @@ public class Sample_OneHanded : MonoBehaviour
             // controller_dummy_left.SetActive(true);
             // controller_dummy_right.SetActive(true);
         }
-        
+
         GameObject star = GameObject.Find("star");
         star.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         GameObject controller_dummy = GameObject.Find("controller_dummy");
         controller_dummy.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
-        
-        
-        
+
+
+
     }
-    
+
 
     // Update:
     void Update()
@@ -232,8 +229,8 @@ public class Sample_OneHanded : MonoBehaviour
         float trigger_right = Input.GetAxis("RightControllerTrigger");
 
         float right_trigger = Input.GetAxis("RightControllerTrigger");
-        
-        
+
+
 
         bool button_a_left = Input.GetButton("LeftControllerButtonA");
         bool button_a_right = Input.GetButton("RightControllerButtonA");
@@ -247,7 +244,8 @@ public class Sample_OneHanded : MonoBehaviour
         }
 
         // If recording_gesture is -3, that means that the AI has recently finished learning a new gesture.
-        if (recording_gesture == -3) {
+        if (recording_gesture == -3)
+        {
             // Show "finished" message.
             double performance = gr.recognitionScore();
             HUDText.text = "Training finished!\n(Final recognition performance = " + (performance * 100.0) + "%)\nFeel free to use your new gesture.";
@@ -256,41 +254,51 @@ public class Sample_OneHanded : MonoBehaviour
             return;
         }
         // If recording_gesture is -2, that means that the AI is currently learning a new gesture.
-        if (recording_gesture == -2) {
+        if (recording_gesture == -2)
+        {
             // Show "please wait" message
             HUDText.text = "...training...\n(Current recognition performance = " + (last_performance_report * 100.0) + "%)\nPress the 'A'/'X'/Menu button to cancel training.";
             // In this mode, the user may press the "A/X/menu" button to cancel the learning process.
-            if (button_a_left || button_a_right) {
+            if (button_a_left || button_a_right)
+            {
                 // Button pressed: stop the learning process.
                 gr.stopTraining();
                 recording_gesture = -3;
             }
             return;
-		}
+        }
         // Else: if we arrive here, we're not in training/learning mode,
         // so the user can draw gestures.
 
         // If recording_gesture is -1, we're currently not recording a new gesture.
-        if (recording_gesture == -1) {
+        if (recording_gesture == -1)
+        {
             // In this mode, the user can press button A/X/menu to create a new gesture
-            if (button_a_left || button_a_right) {
+            if (button_a_left || button_a_right)
+            {
                 recording_gesture = gr.createGesture("custom gesture " + (gr.numberOfGestures() - 5));
                 // from now on: recording a new gesture
-                HUDText.text = "Learning a new gesture (custom gesture " + (recording_gesture-4) + "):\nPlease perform the gesture 25 times.\n(0 / 25)";
+                HUDText.text = "Learning a new gesture (custom gesture " + (recording_gesture - 4) + "):\nPlease perform the gesture 25 times.\n(0 / 25)";
             }
         }
 
         // If the user is not yet dragging (pressing the trigger) on either controller, he hasn't started a gesture yet.
-        if (active_controller == null) {
+        if (active_controller == null)
+        {
             // If the user presses either controller's trigger, we start a new gesture.
             //Debug.Log(grabPinchAction.GetState(handType));
-            if (grabPinchAction.GetState(handType)) {
+            if (grabPinchAction.GetState(handType))
+            {
                 // Right controller trigger pressed.
                 active_controller = GameObject.Find("RightHand");
-            } else if (trigger_left > 0.9) {
+            }
+            else if (trigger_left > 0.9)
+            {
                 // Left controller trigger pressed.
                 active_controller = GameObject.Find("Left Hand");
-            } else {
+            }
+            else
+            {
                 // If we arrive here, the user is pressing neither controller's trigger:
                 // nothing to do.
                 return;
@@ -304,14 +312,15 @@ public class Sample_OneHanded : MonoBehaviour
 
         // If we arrive here, the user is currently dragging with one of the controllers.
         // Check if the user is still dragging or if he let go of the trigger button.
-        if (trigger_left > 0.85 || grabPinchAction.GetState(handType)) {
+        if (trigger_left > 0.85 || grabPinchAction.GetState(handType))
+        {
             // The user is still dragging with the controller: continue the gesture.
-           // Vector3 p = active_controller.transform.position;
-           // Quaternion q = active_controller.transform.rotation;
-            
+            // Vector3 p = active_controller.transform.position;
+            // Quaternion q = active_controller.transform.rotation;
+
             Vector3 p = starHolder.transform.position;
             Quaternion q = starHolder.transform.rotation;
-            
+
             gr.contdStrokeQ(p, q);
             // Show the stroke by instatiating new objects
             GameObject star_instance = Instantiate(GameObject.Find("star"));
@@ -331,9 +340,11 @@ public class Sample_OneHanded : MonoBehaviour
         active_controller = null;
 
         // Delete the objects that we used to display the gesture.
-        foreach (string star in stroke) {
+        foreach (string star in stroke)
+        {
             GameObject star_object = GameObject.Find(star);
-            if (star_object != null) {
+            if (star_object != null)
+            {
                 Destroy(star_object);
             }
         }
@@ -353,13 +364,17 @@ public class Sample_OneHanded : MonoBehaviour
         // }
 
         // If we are currently recording samples for a custom gesture, check if we have recorded enough samples yet.
-        if (recording_gesture >= 0) {
+        if (recording_gesture >= 0)
+        {
             // Currently recording samples for a custom gesture - check how many we have recorded so far.
             int num_samples = gr.getGestureNumberOfSamples(recording_gesture);
-            if (num_samples < 25) {
+            if (num_samples < 25)
+            {
                 // Not enough samples recorded yet.
                 HUDText.text = "Learning a new gesture (custom gesture " + (recording_gesture - 4) + "):\nPlease perform the gesture 25 times.\n(" + num_samples + " / 25)";
-            } else {
+            }
+            else
+            {
                 // Enough samples recorded. Start the learning process.
                 HUDText.text = "Learning gestures - please wait...\n(press A/X/menu button to stop the learning process)";
                 // Set up the call-backs to receive information about the learning process.
@@ -370,7 +385,8 @@ public class Sample_OneHanded : MonoBehaviour
                 gr.setMaxTrainingTime(10);
                 // Set recording_gesture to -2 to indicate that we're currently in learning mode.
                 recording_gesture = -2;
-                if (gr.startTraining() == false) {
+                if (gr.startTraining() == false)
+                {
                     Debug.Log("COULD NOT START TRAINING");
                 }
             }
@@ -395,7 +411,7 @@ public class Sample_OneHanded : MonoBehaviour
             cylinder.transform.localScale = new Vector3((float)scale * 2, (float)scale, (float)scale * 2);
             created_objects.Add(cylinder);*/
 
-            
+
 
             var targetObject = laserPointerWrapper.GetTargetObject();
             if (targetObject.CompareTag("Planet"))
@@ -403,7 +419,7 @@ public class Sample_OneHanded : MonoBehaviour
                 // make planet move
                 targetObject.GetComponent<Planet>().Shrinking = true;
                 targetObject.GetComponent<Planet>().IncrementPlanetCount();
-                
+
             }
             else if (targetObject.CompareTag("Levitate"))
             {
@@ -443,20 +459,21 @@ public class Sample_OneHanded : MonoBehaviour
             // }
             var targetObject = laserPointerWrapper.GetTargetObject();
 
-            
+
             if (targetObject.CompareTag("Movable"))
             {
+                
                 SpellManager spellManager = targetObject.GetComponent<SpellManager>();
                 spellManager.ActivateMoveSpell = true;
-                Debug.Log("Zegar sie porusza");
+                Debug.Log("Clock is moving");
             }
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
         }
         else if (gesture_id == 3)
         {
@@ -487,7 +504,7 @@ public class Sample_OneHanded : MonoBehaviour
             {
                 GameObject.Find("SpellManger").GetComponent<SpellManager>().TurnLights();
             }
-            //GameObject.Find("SpellManger").GetComponent<SpellManager>().TurnLights();
+
         }
         else
         {
@@ -506,7 +523,7 @@ public class Sample_OneHanded : MonoBehaviour
         // Update the performance indicator with the latest estimate.
         me.last_performance_report = performance;
     }
-    
+
 
     // Callback function to be called by the gesture recognition plug-in when the learning process was finished.
     [MonoPInvokeCallback(typeof(GestureRecognition.TrainingCallbackFunction))]

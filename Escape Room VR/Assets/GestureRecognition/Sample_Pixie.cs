@@ -26,16 +26,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using System.IO;
-using System.Runtime.InteropServices;
 using AOT;
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using UnityEngine.Networking;
 
 public class Sample_Pixie : MonoBehaviour
 {
@@ -48,52 +45,52 @@ public class Sample_Pixie : MonoBehaviour
 
     // The game object associated with the currently active controller (if any):
     private GameObject active_controller = null;
-    
+
     // Gesture ID for "come here" gesture.
     private const int gestureid_come = 0;
-    
+
     // Gesture ID for "go there" gesture.
     private const int gestureid_go = 1;
-    
+
     // Gesture ID for "spin around" gesture.
     private const int gestureid_spin = 2;
-    
+
     // Gesture ID for "make a flip (loop)" gesture.
     private const int gestureid_flip = 3;
-    
+
     // Gesture ID for "peekaboo" gesture.
     private const int gestureid_peekaboo = 4;
-    
+
 
     // Last reported recognition performance (during training).
     // 0 = 0% correctly recognized, 1 = 100% correctly recognized.
-    private double last_performance_report = 0; 
+    private double last_performance_report = 0;
 
     // Temporary storage for objects to display the gesture stroke.
-    List<string> stroke = new List<string>(); 
+    List<string> stroke = new List<string>();
 
     // Temporary counter variable when creating objects for the stroke display:
-    int stroke_index = 0; 
+    int stroke_index = 0;
 
     // List of Objects created with gestures:
     List<GameObject> created_objects = new List<GameObject>();
 
     // Handle to this object/script instance, so that callbacks from the plug-in arrive at the correct instance.
     GCHandle me;
-    
+
     public class Pixie
     {
         public GameObject gameobject = null;
         public Animator animator = null;
-        
+
         public bool action_finished = true;
-        
+
         public Vector3 target_position;
         public Vector3 target_orientation;
         public string target_trigger = null;
-        
+
         float speed = 0.0f;
-        
+
         public Pixie()
         {
             gameobject = GameObject.Find("pixie");
@@ -101,7 +98,7 @@ public class Sample_Pixie : MonoBehaviour
             target_position = gameobject.transform.position;
             target_orientation = -gameobject.transform.position; // facing the room center / player
         }
-        
+
         public void update()
         {
             Vector3 current_position = gameobject.transform.position;
@@ -113,12 +110,14 @@ public class Sample_Pixie : MonoBehaviour
                 {
                     speed += 0.15f;
                 }
-                float step =  speed * Time.deltaTime;
+                float step = speed * Time.deltaTime;
                 target_rotation.SetLookRotation(target_position - gameobject.transform.position);
                 gameobject.transform.position = Vector3.MoveTowards(gameobject.transform.position, target_position, step);
                 gameobject.transform.rotation = Quaternion.RotateTowards(gameobject.transform.rotation, target_rotation, step * 100.0f);
                 return;
-            } else {
+            }
+            else
+            {
                 speed = 0.0f;
             }
             target_rotation.SetLookRotation(target_orientation);
@@ -176,9 +175,9 @@ public class Sample_Pixie : MonoBehaviour
             this.action_finished = false;
         }
     }
-    
+
     private Pixie pixie = null;
-    
+
     public abstract class Step
     {
         protected double similarity = 0; // This will receive a value of how similar the performed gesture was to previous recordings.
@@ -187,7 +186,7 @@ public class Sample_Pixie : MonoBehaviour
         protected Vector3 dir0 = Vector3.zero; // This will receive the primary direction in which the gesture was performed (greatest expansion).
         protected Vector3 dir1 = Vector3.zero; // This will receive the secondary direction of the gesture.
         protected Vector3 dir2 = Vector3.zero; // This will receive the minor direction of the gesture (direction of smallest expansion).
-            
+
         public bool completed = false;
         public abstract void init(ref GestureRecognition gr);
         public virtual void dragStart(ref GestureRecognition gr, Vector3 hmd_p, Quaternion hmd_q)
@@ -233,7 +232,7 @@ public class Sample_Pixie : MonoBehaviour
             return new Step1_ComeHere();
         }
     }
-    
+
     //                                                                              ________________________________
     // ____________________________________________________________________________/        Step1_ComeHere
     public class Step1_ComeHere : Step
@@ -246,7 +245,8 @@ public class Sample_Pixie : MonoBehaviour
         public override void dragStop(ref GestureRecognition gr, ref Pixie pixie)
         {
             int gesture_id = gr.endStroke(ref similarity, ref pos, ref scale, ref dir0, ref dir1, ref dir2);
-            if (gesture_id == gestureid_come) {
+            if (gesture_id == gestureid_come)
+            {
                 pixie.triggerCome(pos);
                 this.completed = true;
                 Sample_Pixie.HUDText.text = "";
@@ -257,8 +257,8 @@ public class Sample_Pixie : MonoBehaviour
             return new Step2_GoThere();
         }
     }
-    
-    
+
+
     //                                                                              ________________________________
     // ____________________________________________________________________________/        Step2_GoThere
     public class Step2_GoThere : Step
@@ -283,8 +283,8 @@ public class Sample_Pixie : MonoBehaviour
             return new Step3_ComeHereAndGoThere();
         }
     }
-    
-    
+
+
     //                                                                              ________________________________
     // ____________________________________________________________________________/    Step3_ComeHereAndGoThere
     public class Step3_ComeHereAndGoThere : Step
@@ -299,16 +299,20 @@ public class Sample_Pixie : MonoBehaviour
         public override void dragStop(ref GestureRecognition gr, ref Pixie pixie)
         {
             int gesture_id = gr.endStroke(ref similarity, ref pos, ref scale, ref dir0, ref dir1, ref dir2);
-            if (gesture_id == gestureid_go) {
+            if (gesture_id == gestureid_go)
+            {
                 pixie.triggerGo(pos + (dir0 * 6.0f * (float)scale));
                 this.num_commands_issued += 1;
-                Sample_Pixie.HUDText.text = "That's a 'go there' gesture. Nice!\nTry calling and sending the pixie away a few more times.\n("+ this.num_commands_issued+"/4)";
-            } else if (gesture_id == gestureid_come) {
+                Sample_Pixie.HUDText.text = "That's a 'go there' gesture. Nice!\nTry calling and sending the pixie away a few more times.\n(" + this.num_commands_issued + "/4)";
+            }
+            else if (gesture_id == gestureid_come)
+            {
                 pixie.triggerCome(pos);
                 this.num_commands_issued += 1;
                 Sample_Pixie.HUDText.text = "That's a 'come here' gesture. Nice!\nTry calling and sending the pixie away a few more times.\n(" + this.num_commands_issued + "/4)";
             }
-            if (this.num_commands_issued >= 4) {
+            if (this.num_commands_issued >= 4)
+            {
                 this.completed = true;
                 Sample_Pixie.HUDText.text = "";
             }
@@ -318,14 +322,14 @@ public class Sample_Pixie : MonoBehaviour
             return new Step4_Spin();
         }
     }
-    
-    
+
+
     //                                                                              ________________________________
     // ____________________________________________________________________________/    Step4_Spin
     public class Step4_Spin : Step
     {
         private int num_commands_issued = 0;
-        
+
         public override void init(ref GestureRecognition gr)
         {
             this.completed = false;
@@ -335,12 +339,14 @@ public class Sample_Pixie : MonoBehaviour
         public override void dragStop(ref GestureRecognition gr, ref Pixie pixie)
         {
             int gesture_id = gr.endStroke(ref similarity, ref pos, ref scale, ref dir0, ref dir1, ref dir2);
-            if (gesture_id == gestureid_spin) {
+            if (gesture_id == gestureid_spin)
+            {
                 pixie.triggerSpin(pos);
                 this.num_commands_issued += 1;
-                Sample_Pixie.HUDText.text = "Great!\nTry it again!\nMake a twirl (whirling) gesture\nto make the pixie spin. ("+ this.num_commands_issued+"/3)";
+                Sample_Pixie.HUDText.text = "Great!\nTry it again!\nMake a twirl (whirling) gesture\nto make the pixie spin. (" + this.num_commands_issued + "/3)";
             }
-            if (this.num_commands_issued >= 3) {
+            if (this.num_commands_issued >= 3)
+            {
                 this.completed = true;
                 Sample_Pixie.HUDText.text = "";
             }
@@ -350,14 +356,14 @@ public class Sample_Pixie : MonoBehaviour
             return new Step5_FlipRecord();
         }
     }
-    
-    
+
+
     //                                                                              ________________________________
     // ____________________________________________________________________________/    Step5_FlipRecord
     public class Step5_FlipRecord : Step
     {
         private int recorded_samples = 0;
-        
+
         public override void init(ref GestureRecognition gr)
         {
             this.completed = false;
@@ -377,11 +383,13 @@ public class Sample_Pixie : MonoBehaviour
         public override void dragStop(ref GestureRecognition gr, ref Pixie pixie)
         {
             int gesture_id = gr.endStroke(ref similarity, ref pos, ref scale, ref dir0, ref dir1, ref dir2);
-            if (gesture_id == gestureid_flip) {
+            if (gesture_id == gestureid_flip)
+            {
                 recorded_samples += 1;
                 Sample_Pixie.HUDText.text = "Now teach your pixie something new!\nInvent a new gesture and do it 20 times.\n(" + recorded_samples + "/20)";
             }
-            if (recorded_samples >= 20) {
+            if (recorded_samples >= 20)
+            {
                 this.completed = true;
                 gr.startTraining();
                 Sample_Pixie.HUDText.text = "Please wait while your pixie is learning the new gesture...";
@@ -392,14 +400,14 @@ public class Sample_Pixie : MonoBehaviour
             return new Step6_FlipPerform();
         }
     }
-    
-    
+
+
     //                                                                              ________________________________
     // ____________________________________________________________________________/    Step6_FlipPerform
     public class Step6_FlipPerform : Step
     {
         private int num_commands_issued = 0;
-        
+
         public override void init(ref GestureRecognition gr)
         {
             this.completed = false;
@@ -430,7 +438,8 @@ public class Sample_Pixie : MonoBehaviour
                 pixie.triggerCome(pos);
                 Sample_Pixie.HUDText.text = "That's a 'come here' gesture. Nice!\nTry a few more times.\n(" + this.num_commands_issued + "/4)";
             }
-            if (this.num_commands_issued >= 4) {
+            if (this.num_commands_issued >= 4)
+            {
                 this.completed = true;
                 Sample_Pixie.HUDText.text = "";
             }
@@ -440,14 +449,14 @@ public class Sample_Pixie : MonoBehaviour
             return new Step7_PeekabooRecord();
         }
     }
-    
-    
+
+
     //                                                                              ________________________________
     // ____________________________________________________________________________/    Step7_PeekabooRecord
     public class Step7_PeekabooRecord : Step
     {
         private int recorded_samples = 0;
-        
+
         public override void init(ref GestureRecognition gr)
         {
             this.completed = false;
@@ -467,11 +476,13 @@ public class Sample_Pixie : MonoBehaviour
         public override void dragStop(ref GestureRecognition gr, ref Pixie pixie)
         {
             int gesture_id = gr.endStroke(ref similarity, ref pos, ref scale, ref dir0, ref dir1, ref dir2);
-            if (gesture_id == gestureid_peekaboo) {
+            if (gesture_id == gestureid_peekaboo)
+            {
                 recorded_samples += 1;
                 Sample_Pixie.HUDText.text = "Let's try it again!\nInvent a new gesture and do it 20 times.\n(" + recorded_samples + "/20)";
             }
-            if (recorded_samples >= 20) {
+            if (recorded_samples >= 20)
+            {
                 this.completed = true;
                 gr.startTraining();
                 Sample_Pixie.HUDText.text = "Please wait while your pixie is learning the new gesture...";
@@ -482,8 +493,8 @@ public class Sample_Pixie : MonoBehaviour
             return new Step8_FreePlay();
         }
     }
-    
-    
+
+
     //                                                                              ________________________________
     // ____________________________________________________________________________/    Step8_FreePlay
     public class Step8_FreePlay : Step
@@ -528,14 +539,14 @@ public class Sample_Pixie : MonoBehaviour
             return new Step8_FreePlay();
         }
     }
-    
+
     private Step current_step = null;
 
     // Initialization:
-    void Start ()
+    void Start()
     {
         pixie = new Pixie();
-        
+
         // Set the welcome message.
         HUDText = GameObject.Find("HUDText").GetComponent<Text>();
         current_step = new Step0_PressTrigger();
@@ -612,7 +623,8 @@ public class Sample_Pixie : MonoBehaviour
         {
             controller_oculus_left.SetActive(true);
             controller_oculus_right.SetActive(true);
-        } else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
+        }
+        else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
         {
             controller_vive_left.SetActive(true);
             controller_vive_right.SetActive(true);
@@ -627,11 +639,11 @@ public class Sample_Pixie : MonoBehaviour
             controller_dummy_left.SetActive(true);
             controller_dummy_right.SetActive(true);
         }
-        
+
         GameObject star = GameObject.Find("star");
         star.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
     }
-    
+
 
     // Update:
     void Update()
@@ -641,7 +653,7 @@ public class Sample_Pixie : MonoBehaviour
         {
             Application.Quit();
         }
-        
+
         // Don't allow the player to make any gestures when the pixie is still
         // busy with the previous command.
         pixie.update();
@@ -655,10 +667,10 @@ public class Sample_Pixie : MonoBehaviour
         {
             return;
         }
-        
+
         // bool button_a_left = Input.GetButton("LeftControllerButtonA");
         // bool button_a_right = Input.GetButton("RightControllerButtonA");
-        
+
         if (current_step == null)
         {
             return;
@@ -668,20 +680,26 @@ public class Sample_Pixie : MonoBehaviour
             current_step = current_step.nextStep();
             current_step.init(ref this.gr);
         }
-        
+
         float trigger_left = Input.GetAxis("LeftControllerTrigger");
         float trigger_right = Input.GetAxis("RightControllerTrigger");
-        
+
         // If the user is not yet dragging (pressing the trigger) on either controller, he hasn't started a gesture yet.
-        if (active_controller == null) {
+        if (active_controller == null)
+        {
             // If the user presses either controller's trigger, we start a new gesture.
-            if (trigger_right > 0.9) {
+            if (trigger_right > 0.9)
+            {
                 // Right controller trigger pressed.
                 active_controller = GameObject.Find("Right Hand");
-            } else if (trigger_left > 0.9) {
+            }
+            else if (trigger_left > 0.9)
+            {
                 // Left controller trigger pressed.
                 active_controller = GameObject.Find("Left Hand");
-            } else {
+            }
+            else
+            {
                 // If we arrive here, the user is pressing neither controller's trigger:
                 // nothing to do.
                 return;
@@ -708,19 +726,22 @@ public class Sample_Pixie : MonoBehaviour
             star.transform.rotation = new Quaternion((float)random.NextDouble() - 0.5f, (float)random.NextDouble() - 0.5f, (float)random.NextDouble() - 0.5f, (float)random.NextDouble() - 0.5f).normalized;
             //star.transform.rotation.Normalize();
             float star_scale = (float)random.NextDouble() + 0.3f;
-            star.transform.localScale    = new Vector3(star_scale, star_scale, star_scale);
+            star.transform.localScale = new Vector3(star_scale, star_scale, star_scale);
             stroke.Add(star.name);
         }
-        
+
         // Check if the user is still dragging or if he let go of the trigger button.
-        if (trigger_left < 0.85 && trigger_right < 0.85) {
+        if (trigger_left < 0.85 && trigger_right < 0.85)
+        {
             // the user let go of the trigger, ending a gesture.
             active_controller = null;
 
             // Delete the objectes that we used to display the gesture.
-            foreach (string star in stroke) {
+            foreach (string star in stroke)
+            {
                 GameObject star_object = GameObject.Find(star);
-                if (star_object != null) {
+                if (star_object != null)
+                {
                     Destroy(star_object);
                 }
             }
@@ -741,7 +762,7 @@ public class Sample_Pixie : MonoBehaviour
         // Update the performance indicator with the latest estimate.
         me.last_performance_report = performance;
     }
-    
+
 
     // Callback function to be called by the gesture recognition plug-in when the learning process was finished.
     [MonoPInvokeCallback(typeof(GestureRecognition.TrainingCallbackFunction))]

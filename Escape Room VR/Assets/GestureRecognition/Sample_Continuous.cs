@@ -26,16 +26,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using System.IO;
-using System.Runtime.InteropServices;
 using AOT;
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using UnityEngine.Networking;
 
 public class Sample_Continuous : MonoBehaviour
 {
@@ -72,7 +69,7 @@ public class Sample_Continuous : MonoBehaviour
     // or: -1 if not currently recording a new gesture,
     // or: -2 if the AI is currently trying to learn to identify gestures
     // or: -3 if the AI has recently finished learning to identify gestures
-    private int recording_gesture = -1; 
+    private int recording_gesture = -1;
 
     // Last reported recognition performance (during training).
     // 0 = 0% correctly recognized, 1 = 100% correctly recognized.
@@ -106,7 +103,7 @@ public class Sample_Continuous : MonoBehaviour
     };
 
     // Temporary storage for objects to display the gesture stroke.
-    List<StrokePoint> stroke = new List<StrokePoint>(); 
+    List<StrokePoint> stroke = new List<StrokePoint>();
 
     // List of Objects created with gestures:
     List<GameObject> created_objects = new List<GameObject>();
@@ -115,10 +112,10 @@ public class Sample_Continuous : MonoBehaviour
     GCHandle me;
 
     // Initialization:
-    void Start ()
+    void Start()
     {
         me = GCHandle.Alloc(this);
-        
+
         if (RecognitionInterval == 0)
         {
             RecognitionInterval = 0.1f;
@@ -167,7 +164,7 @@ public class Sample_Continuous : MonoBehaviour
             return;
         }
         gr.contdIdentificationSmoothing = 5;
-        
+
         // Hide unused models in the scene
         GameObject controller_oculus_left = GameObject.Find("controller_oculus_left");
         GameObject controller_oculus_right = GameObject.Find("controller_oculus_right");
@@ -203,7 +200,8 @@ public class Sample_Continuous : MonoBehaviour
         {
             controller_oculus_left.SetActive(true);
             controller_oculus_right.SetActive(true);
-        } else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
+        }
+        else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
         {
             controller_vive_left.SetActive(true);
             controller_vive_right.SetActive(true);
@@ -218,7 +216,7 @@ public class Sample_Continuous : MonoBehaviour
             controller_dummy_left.SetActive(true);
             controller_dummy_right.SetActive(true);
         }
-        
+
         GameObject star = GameObject.Find("star");
         star.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         GameObject controller_dummy = GameObject.Find("controller_dummy");
@@ -229,13 +227,13 @@ public class Sample_Continuous : MonoBehaviour
         HUDText = GameObject.Find("HUDText").GetComponent<Text>();
         HUDText.text = "Welcome to MARUI Gesture Plug-in!\n"
                       + "Hold the trigger to draw gestures.\nAvailable gestures:";
-        for (int i=0; i<gr.numberOfGestures(); i++)
+        for (int i = 0; i < gr.numberOfGestures(); i++)
         {
             HUDText.text += "\n" + (i + 1) + " : " + gr.getGestureName(i);
         }
         HUDText.text += "\nor: press 'A'/'X'/Menu button\nto create new gesture.";
     }
-    
+
 
     // Update:
     void Update()
@@ -260,7 +258,8 @@ public class Sample_Continuous : MonoBehaviour
         }
 
         // If recording_gesture is -3, that means that the AI has recently finished learning a new gesture.
-        if (recording_gesture == -3) {
+        if (recording_gesture == -3)
+        {
             // Show "finished" message.
             double performance = gr.recognitionScore();
             HUDText.text = "Training finished!\n(Final recognition performance = " + (performance * 100.0) + "%)\nFeel free to use your new gesture.";
@@ -269,18 +268,20 @@ public class Sample_Continuous : MonoBehaviour
             return;
         }
         // If recording_gesture is -2, that means that the AI is currently learning a new gesture.
-        if (recording_gesture == -2) {
+        if (recording_gesture == -2)
+        {
             // Show "please wait" message
             HUDText.text = "...training...\n(Current recognition performance = " + (last_performance_report * 100.0) + "%)\nPress the 'A'/'X'/Menu button to stop training.";
             // In this mode, the user may press the "A/X/menu" button to cancel the learning process.
-            if (button_a_left || button_a_right) {
+            if (button_a_left || button_a_right)
+            {
                 // Button pressed: stop the learning process.
                 gr.stopTraining();
                 recording_gesture = -3;
                 button_a_pressed = true;
             }
             return;
-		}
+        }
         // Else: if we arrive here, we're not in training/learning mode,
         // so the user can draw gestures.
 
@@ -288,13 +289,15 @@ public class Sample_Continuous : MonoBehaviour
         {
             button_a_pressed = true;
             // If recording_gesture is -1, we're currently not recording a new gesture.
-            if (recording_gesture == -1) {
+            if (recording_gesture == -1)
+            {
                 // In this mode, the user can press button A/X/menu to create a new gesture
                 recording_gesture = gr.createGesture("Your gesture #" + (gr.numberOfGestures() - 4));
                 // from now on: recording a new gesture
                 HUDText.text = "Learning a new gesture (" + (gr.getGestureName(recording_gesture)) + "):\nPlease perform the gesture for a while.\n(0 samples recorded)";
                 gr.contdIdentificationPeriod = (int)(this.GesturePeriod * 1000.0f); // to milliseconds
-            } else
+            }
+            else
             {
                 HUDText.text = "Learning gestures - please wait...\n(press A/X/menu button to stop the learning process)";
                 // Set up the call-backs to receive information about the learning process.
@@ -314,15 +317,21 @@ public class Sample_Continuous : MonoBehaviour
         }
 
         // If the user is not yet dragging (pressing the trigger) on either controller, he hasn't started a gesture yet.
-        if (active_controller == null) {
+        if (active_controller == null)
+        {
             // If the user presses either controller's trigger, we start a new gesture.
-            if (trigger_right > 0.9) {
+            if (trigger_right > 0.9)
+            {
                 // Right controller trigger pressed.
                 active_controller = GameObject.Find("Right Hand");
-            } else if (trigger_left > 0.9) {
+            }
+            else if (trigger_left > 0.9)
+            {
                 // Left controller trigger pressed.
                 active_controller = GameObject.Find("Left Hand");
-            } else {
+            }
+            else
+            {
                 // If we arrive here, the user is pressing neither controller's trigger:
                 // nothing to do.
                 return;
@@ -399,7 +408,8 @@ public class Sample_Continuous : MonoBehaviour
         stroke.Clear();
 
         // If we are currently recording samples for a custom gesture, check if we have recorded enough samples yet.
-        if (recording_gesture >= 0) {
+        if (recording_gesture >= 0)
+        {
             // Currently recording samples for a custom gesture - check how many we have recorded so far.
             int num_samples = gr.getGestureNumberOfSamples(recording_gesture);
             HUDText.text = "Learning a new gesture (" + (gr.getGestureName(recording_gesture)) + "):\n"
@@ -431,7 +441,7 @@ public class Sample_Continuous : MonoBehaviour
         // Update the performance indicator with the latest estimate.
         me.last_performance_report = performance;
     }
-    
+
 
     // Callback function to be called by the gesture recognition plug-in when the learning process was finished.
     [MonoPInvokeCallback(typeof(GestureRecognition.TrainingCallbackFunction))]

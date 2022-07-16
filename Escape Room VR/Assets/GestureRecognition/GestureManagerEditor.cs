@@ -1,10 +1,7 @@
 ﻿#if UNITY_EDITOR
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Runtime.InteropServices;
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(GestureManager))]
 public class GestureManagerEditor : UnityEditor.Editor
@@ -76,7 +73,7 @@ public class GestureManagerEditor : UnityEditor.Editor
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndVertical();
         }
-        
+
         // Gesture file management
         if (gm.gr == null && gm.gc == null)
         {
@@ -101,7 +98,8 @@ public class GestureManagerEditor : UnityEditor.Editor
                 bool success = gm.gr.saveToFile(gm.file_save_gestures);
                 Debug.Log((success ? "Gesture file saved successfully" : "[ERROR] Failed to save gesture file."));
             }
-        } else if (gm.gc != null)
+        }
+        else if (gm.gc != null)
         {
             gm.file_load_combinations = EditorGUILayout.TextField("Load GestureCombinations File: ", gm.file_load_combinations);
             if (GUILayout.Button("Load GestureCombinations File"))
@@ -134,7 +132,8 @@ public class GestureManagerEditor : UnityEditor.Editor
             gm.gr.ignoreHeadRotationLeftRight = EditorGUILayout.Toggle("Ignore left/right", gm.gr.ignoreHeadRotationLeftRight);
             gm.gr.ignoreHeadRotationUpDown = EditorGUILayout.Toggle("Ignore up/down", gm.gr.ignoreHeadRotationUpDown);
             gm.gr.ignoreHeadRotationTilt = EditorGUILayout.Toggle("Ignore tilting", gm.gr.ignoreHeadRotationTilt);
-        } else if (gm.gc != null)
+        }
+        else if (gm.gc != null)
         {
             gm.gc.ignoreHeadRotationLeftRight = EditorGUILayout.Toggle("Ignore left/right", gm.gc.ignoreHeadRotationLeftRight);
             gm.gc.ignoreHeadRotationUpDown = EditorGUILayout.Toggle("Ignore up/down", gm.gc.ignoreHeadRotationUpDown);
@@ -165,7 +164,7 @@ public class GestureManagerEditor : UnityEditor.Editor
                 EditorGUILayout.LabelField(gesture_samples.ToString() + " samples", GUILayout.Width(70));
                 if (GUILayout.Button("Delete Last Sample"))
                 {
-                    bool success = gm.gr.deleteGestureSample(i, gesture_samples-1);
+                    bool success = gm.gr.deleteGestureSample(i, gesture_samples - 1);
                     if (!success)
                     {
                         Debug.Log("[ERROR] Failed to delete gesture sample.");
@@ -212,10 +211,12 @@ public class GestureManagerEditor : UnityEditor.Editor
                 if (!importGR.loadFromFile(gm.file_load_gestures))
                 {
                     Debug.Log("[ERROR] Failed to load gesture file.");
-                } else if (gm.gr.importGestures(importGR))
+                }
+                else if (gm.gr.importGestures(importGR))
                 {
                     Debug.Log("Gesture file imported successfully");
-                } else
+                }
+                else
                 {
                     Debug.Log("[ERROR] Failed to import gesture file.");
                 }
@@ -251,7 +252,7 @@ public class GestureManagerEditor : UnityEditor.Editor
                 for (int i = 0; i < num_parts; i++)
                 {
                     int num_gestures = gm.gc.numberOfGestures(i);
-                    string[] gesture_names = new string[num_gestures+1];
+                    string[] gesture_names = new string[num_gestures + 1];
                     gesture_names[0] = "[NONE]";
                     for (int k = 0; k < num_gestures; k++)
                     {
@@ -284,7 +285,7 @@ public class GestureManagerEditor : UnityEditor.Editor
                 gm.create_combination_name = "(new Gesture Combination name)";
             }
             GUILayout.EndHorizontal();
-            
+
             for (int part = 0; part < num_parts; part++)
             {
                 EditorGUILayout.Space();
@@ -307,7 +308,7 @@ public class GestureManagerEditor : UnityEditor.Editor
                     EditorGUILayout.LabelField(gesture_samples.ToString() + " samples", GUILayout.Width(70));
                     if (GUILayout.Button("Delete Last Sample"))
                     {
-                        bool success = gm.gc.deleteGestureSample(part, i, gesture_samples-1);
+                        bool success = gm.gc.deleteGestureSample(part, i, gesture_samples - 1);
                         if (!success)
                         {
                             Debug.Log("[ERROR] Failed to delete gesture sample.");
@@ -336,7 +337,7 @@ public class GestureManagerEditor : UnityEditor.Editor
                 if (gm.create_gesture_names == null || gm.create_gesture_names.Length < num_parts)
                 {
                     gm.create_gesture_names = new string[num_parts];
-                    for (int i=0; i<num_parts; i++)
+                    for (int i = 0; i < num_parts; i++)
                     {
                         gm.create_gesture_names[i] = "(new gesture name)";
                     }
@@ -405,21 +406,22 @@ public class GestureManagerEditor : UnityEditor.Editor
         if (gm.gr != null)
         {
             int num_gestures = gm.gr.numberOfGestures();
-            string[] gesture_names = new string[num_gestures+1];
+            string[] gesture_names = new string[num_gestures + 1];
             gesture_names[0] = "[Testing, not recording]";
-            for (int i=0; i<num_gestures; i++)
+            for (int i = 0; i < num_gestures; i++)
             {
-                gesture_names[i+1] = gm.gr.getGestureName(i);
+                gesture_names[i + 1] = gm.gr.getGestureName(i);
             }
-            gm.record_gesture_id = EditorGUILayout.Popup(gm.record_gesture_id +1, gesture_names)-1;
-        } else if (gm.gc != null)
+            gm.record_gesture_id = EditorGUILayout.Popup(gm.record_gesture_id + 1, gesture_names) - 1;
+        }
+        else if (gm.gc != null)
         {
             int num_combinations = gm.gc.numberOfGestureCombinations();
             string[] combination_names = new string[num_combinations + 1];
             combination_names[0] = "[Testing, not recording]";
             for (int i = 0; i < num_combinations; i++)
             {
-                combination_names[i+1] = gm.gc.getGestureCombinationName(i);
+                combination_names[i + 1] = gm.gc.getGestureCombinationName(i);
             }
             gm.record_combination_id = EditorGUILayout.Popup(gm.record_combination_id + 1, combination_names) - 1;
         }
@@ -430,7 +432,7 @@ public class GestureManagerEditor : UnityEditor.Editor
         EditorGUILayout.LabelField("START/STOP TRAINING:");
         if (gm.gr != null)
         {
-            EditorGUILayout.LabelField("Performance:", (gm.gr.recognitionScore() * 100.0).ToString()+"%");
+            EditorGUILayout.LabelField("Performance:", (gm.gr.recognitionScore() * 100.0).ToString() + "%");
             EditorGUILayout.LabelField("Currently training:", (gm.gr.isTraining() ? "yes" : "no"));
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Start training"))
@@ -444,7 +446,8 @@ public class GestureManagerEditor : UnityEditor.Editor
                 gm.gr.stopTraining();
             }
             GUILayout.EndHorizontal();
-        } else if (gm.gc != null)
+        }
+        else if (gm.gc != null)
         {
             EditorGUILayout.LabelField("Performance:", (gm.gc.recognitionScore() * 100.0).ToString() + "%");
             EditorGUILayout.LabelField("Currently training:", (gm.gc.isTraining() ? "yes" : "no"));

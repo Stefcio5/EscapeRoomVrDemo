@@ -136,15 +136,13 @@
  * 
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using UnityEngine;
 
-public class GestureCombinations {
+public class GestureCombinations
+{
 
     //                                                          ________________________________
     //_________________________________________________________/  ignoreHeadRotationLeftRight

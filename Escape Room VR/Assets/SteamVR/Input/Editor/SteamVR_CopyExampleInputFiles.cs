@@ -1,9 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.IO;
 using UnityEditor;
-using System;
-using System.Linq;
-using System.IO;
+using UnityEngine;
 
 namespace Valve.VR
 {

@@ -26,12 +26,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using System.Runtime.InteropServices;
 using AOT;
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
 
@@ -73,18 +72,18 @@ public class GestureManager : MonoBehaviour
     private Text HUDText;
 
     // The game object associated with the currently active controller (if any):
-    private GameObject           active_controller = null; 
+    private GameObject active_controller = null;
 
     // Last reported recognition performance (during training).
     // 0 = 0% correctly recognized, 1 = 100% correctly recognized.
-    private double last_performance_report = 0; 
+    private double last_performance_report = 0;
 
     // Temporary storage for objects to display the gesture stroke.
-    List<string> stroke = new List<string>(); 
+    List<string> stroke = new List<string>();
 
     // Temporary counter variable when creating objects for the stroke display:
-    public int stroke_index = 0; 
-    
+    public int stroke_index = 0;
+
     // Handle to this object/script instance, so that callbacks from the plug-in arrive at the correct instance.
     public GCHandle me;
 
@@ -101,7 +100,7 @@ public class GestureManager : MonoBehaviour
     }
 
     // Initialization:
-    void Start ()
+    void Start()
     {
         // Set the welcome message.
         HUDText = GameObject.Find("HUDText").GetComponent<Text>();
@@ -111,7 +110,7 @@ public class GestureManager : MonoBehaviour
                       + "Please use the Inspector for the XR rig.";
 
         me = GCHandle.Alloc(this);
-        
+
         GameObject controller_oculus_left = GameObject.Find("controller_oculus_left");
         GameObject controller_oculus_right = GameObject.Find("controller_oculus_right");
         GameObject controller_vive_left = GameObject.Find("controller_vive_left");
@@ -146,7 +145,8 @@ public class GestureManager : MonoBehaviour
         {
             controller_oculus_left.SetActive(true);
             controller_oculus_right.SetActive(true);
-        } else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
+        }
+        else if (input_device.Length >= 4 && input_device.Substring(0, 4) == "Vive")
         {
             controller_vive_left.SetActive(true);
             controller_vive_right.SetActive(true);
@@ -392,7 +392,7 @@ public class GestureManager : MonoBehaviour
             else
             {
                 string combination_name = gc.getGestureCombinationName(recognized_combination_id);
-                HUDText.text = "Identified gesture combination '"+ combination_name+"' ("+ recognized_combination_id + ")\n(Similarity: " + similarity + ")";
+                HUDText.text = "Identified gesture combination '" + combination_name + "' (" + recognized_combination_id + ")\n(Similarity: " + similarity + ")";
             }
         }
     }
